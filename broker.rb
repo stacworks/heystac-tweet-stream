@@ -14,13 +14,17 @@ puts "Setup and waiting for tweets matching '#{query}'..."
 
 client.filter(:track => query) do |object|
 
-  case object
-  when Twitter::Tweet
-    puts object.id
+  begin
+    case object
+    when Twitter::Tweet
+      puts object.id
 
-    Pusher['main'].trigger('tweet:receive', object.attrs)
-  else
-    puts "Unknown type #{object.class}"
+      Pusher['main'].trigger('tweet:receive', object.attrs)
+    else
+      puts "Unknown type #{object.class}"
+    end
+  rescue Pusher::Error
+    puts "Error trying to publish Tweet."
   end
 
 end
