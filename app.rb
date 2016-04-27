@@ -9,6 +9,14 @@ client = Twitter::REST::Client.new do |config|
   config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
 end
 
+helpers do
+
+  def format_username(name)
+    name.include?("@") ? name : "@#{name}"
+  end
+
+end
+
 get '/' do
   @tweets = client.search(query).take(10)
 
