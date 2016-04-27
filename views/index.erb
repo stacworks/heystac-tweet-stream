@@ -52,9 +52,21 @@
 
   <div class="row">
     <div class="large-8 large-centered columns">
+      <div id='js-tweets'>
 
-      <div id='js-tweets'></div>
+        <% @tweets.each do |tweet| %>
 
+          <div class="tweet">
+            <strong class="tweet__screen-name">
+              <%= tweet.user.screen_name.include?("@") ? tweet.user.screen_name : "@#{tweet.user.screen_name}" %>
+            </strong>
+
+            <p class="tweet__text"><%= tweet.text %></p>
+          </div>
+
+        <% end %>
+
+      </div>
     </div>
   </div>
 

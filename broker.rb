@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'twitter'
 require 'pusher'
 
@@ -10,16 +9,16 @@ client = Twitter::Streaming::Client.new do |config|
   config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
 end
 
-puts "Setup and waiting for tweets matching '#{query}'..."
+def publish(tweet)
+  Pusher['main'].trigger('tweet:receive', tweet.attrs)
+end
 
 client.filter(:track => query) do |object|
 
   begin
     case object
     when Twitter::Tweet
-      puts object.id
-
-      Pusher['main'].trigger('tweet:receive', object.attrs)
+      publish(object)
     else
       puts "Unknown type #{object.class}"
     end
