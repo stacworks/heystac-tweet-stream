@@ -71,9 +71,9 @@
   </div>
 
   <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
-  <script src="https://js.pusher.com/2.1/pusher.min.js" type="text/javascript"></script>
+  <script src="https://js.pusher.com/3.1/pusher.min.js"></script>
   <script type="text/javascript">
-    var pusher = new Pusher('<%= ENV["PUSHER_PUBLIC_KEY"] %>');
+    var pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>', { encrypted: true });
     var channel = pusher.subscribe('main');
 
     $(function(){
