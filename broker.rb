@@ -6,7 +6,8 @@ query = ENV['TWITTER_QUERY']
 $pusher = Pusher::Client.new(
   app_id: ENV['PUSHER_APP_ID'],
   key: ENV['PUSHER_KEY'],
-  secret: ENV['PUSHER_SECRET']
+  secret: ENV['PUSHER_SECRET'],
+  cluster: ENV['PUSHER_CLUSTER']
 )
 
 $client = Twitter::Streaming::Client.new do |config|
