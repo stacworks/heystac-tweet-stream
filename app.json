@@ -1,0 +1,5 @@
+{
+  "name": "heystac-stream",
+  "description": "The Twitter stream for any given hashtag, used during live events.",
+  "stack": "heroku-18"
+}
